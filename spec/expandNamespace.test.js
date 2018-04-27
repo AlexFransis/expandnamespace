@@ -40,4 +40,11 @@ describe( 'The ./lib/expandNamespaces function', ()=>{
 
         expandNamespaces(modulePath).should.Throw(AssertionError({message: errMsg}));
     });
+
+    it('should return a relative path that starts with .', () => {
+        const modulePath = "module.js";
+        const expected = "./../path/to/module";
+
+        expect(expandNamespaces(modulePath)).to.equal(expected);
+    });
 } );

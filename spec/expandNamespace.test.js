@@ -32,10 +32,11 @@ describe( 'The ./lib/expandNamespaces function', ()=>{
 
   it( 'should return any invalid modules passed as argument', ()=>{
 
-    const invalidModule = '30004';
+    const invalidModule = '30004'; // no matches
+    const actual        = expandNS( invalidModule );
     const expected      = invalidModule;
 
-    expect( expandNS( invalidModule ) ).to.equal( expected );
+    expect( actual ).to.equal( expected );
 
   } );
 
@@ -43,10 +44,10 @@ describe( 'The ./lib/expandNamespaces function', ()=>{
 
     const modulePath   = '<module1>';
     const namespaceKey = 'module1';
-    const { errMsg }   = new assert.AssertionError(
+    const { message }  = new assert.AssertionError(
       { message: `namespace <${ namespaceKey }> is not defined.` } );
 
-    expect( ()=>expandNS( modulePath ) ).to.throw( errMsg );
+    expect( ()=>expandNS( modulePath ) ).to.throw( message );
 
   } );
 
